@@ -51,7 +51,7 @@ def render_line(arr):
 
 render_line(HEADERS)
 
-for _file in glob.glob(data/crowdai_fma_test/*.mp3):
+for _file in sorted(glob.glob("data/crowdai_fma_test/*.mp3")):
   """
   NOTE: This expects that you have already downloaded the test set
   and it is available inside the data folder
@@ -66,6 +66,11 @@ f.close()
 challenge = crowdai.Challenge("WWWLearning2RecognizeMusicalGenre", API_KEY)
 challenge.submit("random_submission.csv")
 
+```
+
+or you could also execute the included script :
+```
+python random_submission.py --api_key=<YOUR CROWDAI API KEY>
 ```
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>
