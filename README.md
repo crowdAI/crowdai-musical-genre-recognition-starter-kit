@@ -6,6 +6,10 @@
     25,000 trackd of 30s each, with 16 unbalanced classes
     More instructions on parsing the training dataset is available at :
     [https://github.com/mdeff/fma]
+  * [fma_metadata.zip](fma_metadata.zip)
+
+    **NOTE** : Please checkout version `rc1` of [fma](https://github.com/mdeff/fma)
+    to be able to successfully use the parsers included in the said repository.
 
 # Installation
 
