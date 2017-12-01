@@ -30,7 +30,7 @@ import crowdai
 predictions_file_path="<path_to_your_predictions_file>"
 API_KEY="<your_crowdai_api_key_here>"
 
-challenge = crowdai.Challenge("WWWLearning2RecognizeMusicalGenre", API_KEY)
+challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
 challenge.submit(predictions_file_path)
 ```
 
@@ -67,7 +67,7 @@ for _file in sorted(glob.glob("data/crowdai_fma_test/*.mp3")):
 
 f.close()
 
-challenge = crowdai.Challenge("WWWLearning2RecognizeMusicalGenre", API_KEY)
+challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
 challenge.submit("random_submission.csv")
 
 ```

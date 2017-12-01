@@ -33,5 +33,5 @@ for _file in sorted(glob.glob("data/crowdai_fma_test/*.mp3")):
 
 f.close()
 
-challenge = crowdai.Challenge("WWWLearning2RecognizeMusicalGenre", API_KEY)
+challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
 challenge.submit("random_submission.csv")
