@@ -17,11 +17,19 @@ HEADERS = ['file_id'] + CLASSES
 f = open("random_submission.csv", "w")
 
 def render_line(arr):
-  f.write(",".join(arr)+"\n")
+	arr = [repr(x) for x in arr]
+	f.write(",".join(arr)+"\n")
 
 render_line(HEADERS)
 
-for _file in sorted(glob.glob("data/crowdai_fma_test/*.mp3")):
+TEST_FILES = sorted(glob.glob("data/crowdai_fma_test/*.mp3"))
+if len(TEST_FILES) == 0:
+	raise Exception("Unable to find the test files at : \
+					`data/crowdai_fma_test/*.mp3`.\n \
+					 Are you sure you downloaded the test set and \
+					 placed it at the right location ? ")
+
+for _file in TEST_FILES:
   """
   NOTE: This expects that you have already downloaded the test set
   and it is available inside the data folder
