@@ -6,6 +6,8 @@ Starter kit for the [WWW2018] challenge "[Learning to Recognize Musical Genre][c
 [www2018]: https://www2018.thewebconf.org
 [challenge]: https://www.crowdai.org/challenges/www-2018-challenge-learning-to-recognize-musical-genre
 
+![FMA illustration](illustration.jpg)
+
 The data used for this challenge comes from the
 [FMA dataset](https://github.com/mdeff/fma). You are encouraged to check out
 that repository for Jupyter notebooks showing how to use the data, exploring
