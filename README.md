@@ -73,3 +73,6 @@ python random_submission.py --api_key=<YOUR CROWDAI API KEY>
 
 * S.P. Mohanty, <sharada.mohanty@epfl.ch>
 * Michaël Defferrard, <michael.defferrard@epfl.ch>
+
+The code in this repository is released under the terms of the
+[MIT license](LICENSE.txt).
