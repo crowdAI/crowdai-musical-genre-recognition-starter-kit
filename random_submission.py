@@ -24,7 +24,7 @@ output_path = "data/random_submission.csv"
 
 csvfile = open(output_path, "w")
 writer = csv.DictWriter(csvfile, fieldnames=HEADERS)
-
+writer.writeheader()
 TEST_FILES = sorted(glob.glob("data/crowdai_fma_test/*.mp3"))
 
 if len(TEST_FILES) == 0:
@@ -43,11 +43,15 @@ for _file in TEST_FILES:
     predictions = np.random.rand((len(CLASSES)))
     predictions = softmax(predictions)
 
+    if np.sum(predictions) > 1.1:
+        print(predictions)
+
     row = {}
     row['file_id'] = _track_id
 
     for _idx, _class in enumerate(CLASSES):
         row[_class] = predictions[_idx]
+    writer.writerow(row)
 
 csvfile.close()
 
