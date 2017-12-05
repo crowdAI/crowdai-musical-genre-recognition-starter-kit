@@ -28,7 +28,6 @@ Download and extract [datasets] such as:
 git clone https://github.com/crowdAI/crowdai-musical-genre-recognition-starter-kit
 cd crowdai-musical-genre-recognition-starter-kit
 pip install -r requirements.txt
-pip install -U crowdai
 ```
 
 **NOTE**: This challenge requires at least Python 3.6 and `crowdai` version 1.0.14.
@@ -40,30 +39,51 @@ Run `python convert.py` to convert `data/fma_metadata/tracks.csv` to a simpler
 second column is the target musical genre.
 
 You can now load the training labels with:
-```
+```python
 import pandas as pd
 labels = pd.read_csv('data/train_labels.csv', index_col=0)
 ```
 
 The path to the training mp3 with a `track_id` of 2 is given by:
-```
+```python
 import fma
 path = fma.get_audio_path(2)
 ```
-and can be loaded as a numpy array with e.g.
-```
+and can be loaded as a numpy array with:
+```python
 import librosa
 x, sr = librosa.load(path, sr=None, mono=False)
 ```
 
-Predictions can be submitted with:
+The list of testing file IDs can be obtained with:
+```python
+import glob
+test_ids = sorted(glob.glob('data/crowdai_fma_test/*.mp3'))
+test_ids = [path.split('/')[-1][:-4] for path in test_ids]
 ```
+and the path to a testing mp3 is given by:
+```python
+path = 'data/crowdai_fma_test/{}.mp3'.format(test_ids[0])
+```
+
+The submission file can be created with:
+```python
+CLASSES = ['Blues', 'Classical', 'Country', 'Easy Listening', 'Electronic',
+           'Experimental', 'Folk', 'Hip-Hop', 'Instrumental', 'International',
+           'Jazz', 'Old-Time / Historic', 'Pop', 'Rock', 'Soul-RnB', 'Spoken']
+
+submission = pd.DataFrame(1/16, pd.Index(test_ids, name='file_id'), CLASSES)
+submission.to_csv('data/submission.csv', header=True)
+```
+and then submitted with:
+```python
 import crowdai
-PREDICTIONS = "<path_to_your_predictions_file>"
-API_KEY = "<your_crowdai_api_key_here>"
-challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
-challenge.submit(PREDICTIONS)
+API_KEY = '<your_crowdai_api_key_here>'
+challenge = crowdai.Challenge('WWWMusicalGenreRecognitionChallenge', API_KEY)
+challenge.submit('data/submission.csv')
 ```
+
+## Examples
 
 See the [random_submission.py](random_submission.py) script for a complete
 submission example, to be run as:
