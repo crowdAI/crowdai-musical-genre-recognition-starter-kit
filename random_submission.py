@@ -56,4 +56,5 @@ for _file in TEST_FILES:
 csvfile.close()
 
 challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
-challenge.submit(output_path)
+response = challenge.submit(output_path)
+print(response['message'])
