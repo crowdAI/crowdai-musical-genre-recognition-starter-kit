@@ -8,12 +8,14 @@ Starter kit for the [WWW2018] challenge "[Learning to Recognize Musical Genre][c
 
 ![FMA illustration](illustration.jpg)
 
-The data used for this challenge comes from the
-[FMA dataset](https://github.com/mdeff/fma). You are encouraged to check out
-that repository for Jupyter notebooks showing how to use the data, exploring
-it, and training baseline models. This challenge uses the `rc1` version of the
-data, make sure to checkout that version of the code. The associated
-[paper](https://arxiv.org/abs/1612.01840) describes the data.
+The data used for this challenge comes from the [FMA dataset][fma_repo]. You
+are encouraged to check out that repository for Jupyter notebooks showing how
+to use the data, exploring it, and training baseline models. This challenge
+uses the `rc1` version of the data, make sure to checkout that version of the
+code. The associated [paper][fma_paper] describes the data.
+
+[fma_repo]: https://github.com/mdeff/fma
+[fma_paper]: https://arxiv.org/abs/1612.01840
 
 ## Installation
 
@@ -30,7 +32,8 @@ cd crowdai-musical-genre-recognition-starter-kit
 pip install -r requirements.txt
 ```
 
-**NOTE**: This challenge requires at least Python 3.6 and `crowdai` version 1.0.14.
+**NOTE**: This challenge requires `crowdai` version 1.0.14 at least.
+The code in this repository and the [FMA repository][fma_repo] has been tested with Python 3.6 only.
 
 ## Usage
 
