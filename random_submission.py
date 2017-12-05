@@ -20,8 +20,14 @@ HEADERS = ['file_id'] + CLASSES
 f = open("data/random_submission.csv", "w")
 
 def render_line(arr):
-    arr = [repr(x) for x in arr]
-    f.write(",".join(arr)+"\n")
+	"""
+		NOTE: This is just a toy example to walk you through the csv generation
+		for your submission. Careful in case of your real submissions, as
+		force type casting of floating point variables using `str`
+		is known to cause loss of precision.
+	"""
+	arr = [str(x) for x in arr]
+	f.write(",".join(arr)+"\n")
 
 render_line(HEADERS)
 
