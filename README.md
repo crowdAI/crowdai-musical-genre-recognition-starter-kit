@@ -83,7 +83,8 @@ and then submitted with:
 import crowdai
 API_KEY = '<your_crowdai_api_key_here>'
 challenge = crowdai.Challenge('WWWMusicalGenreRecognitionChallenge', API_KEY)
-challenge.submit('data/submission.csv')
+response = challenge.submit('data/submission.csv')
+print(response['message'])
 ```
 
 ## Examples
