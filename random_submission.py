@@ -17,7 +17,7 @@ CLASSES = ['Blues', 'Classical', 'Country', 'Easy Listening', 'Electronic',
            'Jazz', 'Old-Time / Historic', 'Pop', 'Rock', 'Soul-RnB', 'Spoken']
 HEADERS = ['file_id'] + CLASSES
 
-f = open("random_submission.csv", "w")
+f = open("data/random_submission.csv", "w")
 
 def render_line(arr):
     arr = [repr(x) for x in arr]
@@ -36,11 +36,11 @@ if len(TEST_FILES) == 0:
 for _file in TEST_FILES:
     # NOTE: This expects that you have already downloaded the test set
     # and it is available inside the data folder.
-    _track_id = _file.split("/")[-1].replace(".mp3", "")
+    _track_id = _file.split("/")[-1][:-4]
     predictions = np.random.rand((len(CLASSES))).tolist()
     render_line([_track_id] + predictions)
 
 f.close()
 
 challenge = crowdai.Challenge("WWWMusicalGenreRecognitionChallenge", API_KEY)
-challenge.submit("random_submission.csv")
+challenge.submit("data/random_submission.csv")
