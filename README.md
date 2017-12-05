@@ -24,9 +24,9 @@ Download and extract [datasets] such as:
 * Training `mp3` files from `fma_medium.zip` are accessible at `data/fma_medium/*/*.mp3`.
 * Test `mp3` files from `fma_crowdai_www2018_test.tar.gz` are accessible at `data/crowdai_fma_test/*.mp3`.
 
-```
-git clone --recursive https://github.com/crowdAI/crowdai-ai-generate-music-starter-kit
-cd crowdai-ai-generate-music-starter-kit
+```sh
+git clone https://github.com/crowdAI/crowdai-musical-genre-recognition-starter-kit
+cd crowdai-musical-genre-recognition-starter-kit
 pip install -r requirements.txt
 pip install -U crowdai
 ```
