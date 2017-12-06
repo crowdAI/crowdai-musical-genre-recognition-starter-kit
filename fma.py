@@ -1,3 +1,5 @@
+"""Adapted from https://github.com/mdeff/fma/blob/master/utils.py"""
+
 import os
 import ast
 
@@ -48,3 +50,11 @@ def load(filepath):
 def get_audio_path(track_id):
     tid_str = '{:06d}'.format(track_id)
     return os.path.join('data', 'fma_medium', tid_str[:3], tid_str + '.mp3')
+
+
+# Faulty MP3 files (https://github.com/mdeff/fma/issues/8).
+# MP3 files with 0 second of audio.
+FILES_NO_AUDIO = [1486, 5574, 65753, 80391, 98558, 98559, 98560, 98571, 99134,
+                  105247, 108925, 126981, 127336, 133297, 143992]
+# MP3 files with less than 30 seconds of audio.
+FAULTY_FILES = FILES_NO_AUDIO + [98565, 98566, 98567, 98568, 98569, 108924]

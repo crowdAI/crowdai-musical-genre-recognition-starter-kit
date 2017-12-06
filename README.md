@@ -58,6 +58,11 @@ import librosa
 x, sr = librosa.load(path, sr=None, mono=False)
 ```
 
+**NOTE**: Some training examples are shorter than 30 seconds, and sometimes
+don't even contain audio.
+That's a [known issue](https://github.com/mdeff/fma/issues/8).
+Type `fma.FAULTY_FILES` to get a list.
+
 The list of testing file IDs can be obtained with:
 ```python
 import glob
