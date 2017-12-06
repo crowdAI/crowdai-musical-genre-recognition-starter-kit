@@ -26,10 +26,6 @@ Download and extract [datasets] such as:
 * Training `mp3` files from `fma_medium.zip` are accessible at `data/fma_medium/*/*.mp3`.
 * Test `mp3` files from `fma_crowdai_www2018_test.tar.gz` are accessible at `data/crowdai_fma_test/*.mp3`.
 
-**NOTE**: If you get any error while decompressing the archives (especially
-with the Windows and macOS system unzippers), please try 7zip. That is probably
-an [unsupported compression issue](https://github.com/mdeff/fma/issues/5).
-
 ```sh
 git clone https://github.com/crowdAI/crowdai-musical-genre-recognition-starter-kit
 cd crowdai-musical-genre-recognition-starter-kit
@@ -61,11 +57,6 @@ and can be loaded as a numpy array with:
 import librosa
 x, sr = librosa.load(path, sr=None, mono=False)
 ```
-
-**NOTE**: Some training examples are shorter than 30 seconds, and sometimes
-don't even contain audio.
-That's a [known issue](https://github.com/mdeff/fma/issues/8).
-Type `fma.FAULTY_FILES` to get a list.
 
 The list of testing file IDs can be obtained with:
 ```python
