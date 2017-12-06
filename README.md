@@ -121,6 +121,11 @@ as:
 python baseline_svm.py
 ```
 
+Finally, a prediction can be submitted with the [submit.py](submit.py) script:
+```sh
+python submit.py --api_key=<YOUR CROWDAI API KEY> data/submission.csv
+```
+
 [librosa]: https://github.com/librosa/librosa
 
 ## Authors
