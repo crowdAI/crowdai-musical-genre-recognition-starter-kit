@@ -112,11 +112,10 @@ python features.py
 ```
 Note that this script can take many hours to complete on the whole 60k tracks.
 
-The [baseline_svm.py](baseline_svm.py) script trains a support vector
-classifier (SVC) with `data/train_labels.csv` as target and `data/features.csv`
-as features. The predictions (only one genre is predicted with probability 1
-for each test track) are stored in `data/submission_svm.csv`. Script to be run
-as:
+The [baseline_svm.py](baseline_svm.py) script trains a [support vector
+classifier (SVC)][svc] with `data/train_labels.csv` as target and
+`data/features.csv` as features. The predictions are stored in
+`data/submission_svm.csv`. Script to be run as:
 ```sh
 python baseline_svm.py
 ```
@@ -127,6 +126,7 @@ python submit.py --api_key=<YOUR CROWDAI API KEY> data/submission.csv
 ```
 
 [librosa]: https://github.com/librosa/librosa
+[svc]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 
 ## Authors
 

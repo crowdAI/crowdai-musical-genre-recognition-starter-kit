@@ -2,6 +2,7 @@
 
 """Adapted from https://github.com/mdeff/fma/blob/master/baselines.ipynb"""
 
+import numpy as np
 import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.preprocessing import StandardScaler
@@ -51,28 +52,21 @@ scaler.transform(X_test)
 # Train the classifier and make predictions.
 
 
-clf = SVC(kernel='rbf')
+clf = SVC(kernel='rbf', probability=True)
 clf.fit(X_train, y_train)
-y_test = clf.predict(X_test)
+y_test = clf.predict_proba(X_test)
 
 
 # Create the submission file.
 
 
-CLASSES = ['Blues', 'Classical', 'Country', 'Easy Listening', 'Electronic',
-           'Experimental', 'Folk', 'Hip-Hop', 'Instrumental', 'International',
-           'Jazz', 'Old-Time / Historic', 'Pop', 'Rock', 'Soul-RnB', 'Spoken']
-
-submission = pd.DataFrame(0, X_test.index, CLASSES)
+submission = pd.DataFrame(y_test, X_test.index, clf.classes_)
 submission.index.name = 'file_id'
 
-for genre in CLASSES:
-    submission[genre] = (y_test == genre).astype(int)
-
 # Be sure that we predicted one and only one genre per track.
-assert (submission.sum(axis=1) == 1).all()
+np.testing.assert_allclose(submission.sum(axis=1), 1)
 
 print('Predicted tracks per genre:')
-print(submission.sum(axis=0))
+print(submission.idxmax(axis=1).value_counts())
 
 submission.to_csv('data/submission_svm.csv', header=True)
