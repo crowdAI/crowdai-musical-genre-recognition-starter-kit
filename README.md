@@ -98,11 +98,21 @@ print(response['message'])
 
 ## Examples
 
-See the [random_submission.py](random_submission.py) script for a complete
-submission example, to be run as:
+The [random_submission.py](random_submission.py) script submits random
+predictions, to be run as:
 ```
 python random_submission.py --api_key=<YOUR CROWDAI API KEY>
 ```
+
+The [features.py](features.py) script extracts many audio features (with the
+help of [librosa]) from all training and testing mp3s. Extracted features are
+stored in `data/features.csv`. Script to be run as:
+```
+python features.py
+```
+Note that this script can take many hours to complete on the whole 60k tracks.
+
+[librosa]: https://github.com/librosa/librosa
 
 ## Authors
 
