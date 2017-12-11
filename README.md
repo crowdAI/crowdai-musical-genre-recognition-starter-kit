@@ -3,7 +3,7 @@
 
 Starter kit for the [WWW2018] challenge "[Learning to Recognize Musical Genre][challenge]" hosted on CrowdAI.
 
-[www2018]: https://www2018.thewebconf.org
+[www2018]: https://www2018.thewebconf.org/program/challenges-track/
 [challenge]: https://www.crowdai.org/challenges/www-2018-challenge-learning-to-recognize-musical-genre
 
 ![FMA illustration](illustration.jpg)
