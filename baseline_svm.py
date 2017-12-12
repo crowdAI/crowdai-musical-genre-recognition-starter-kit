@@ -20,8 +20,8 @@ X_test = features[25000:]
 # Data cleaning
 
 
-X_train = X_train.drop(fma.FAULTY_FILES)
-y_train = y_train.drop(fma.FAULTY_FILES)
+X_train = X_train.drop(fma.FILES_TRAIN_FAULTY)
+y_train = y_train.drop(fma.FILES_TRAIN_FAULTY)
 
 # The track IDs are integers for the training set.
 X_train.index = pd.Index((int(i) for i in X_train.index), name='track_id')

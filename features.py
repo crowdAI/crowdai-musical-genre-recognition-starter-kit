@@ -140,7 +140,7 @@ def test(features, ndigits):
         print('Failed tracks: {}'.format(', '.join(str(i) for i in indices)))
 
     # Failed features extraction should be due to files without audio.
-    assert set(int(i) for i in indices) == set(fma.FILES_NO_AUDIO)
+    assert set(int(i) for i in indices) == set(fma.FILES_TRAIN_NO_AUDIO)
 
     tmp = fma.load('data/features.csv')
     np.testing.assert_allclose(tmp.values, features.values, rtol=10**-ndigits)
