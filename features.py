@@ -112,7 +112,10 @@ def main():
     features = pd.DataFrame(index=tids, columns=columns(), dtype=np.float32)
 
     # More than usable CPUs to be CPU bound, not I/O bound. Beware memory.
-    nb_workers = int(1.5 * len(os.sched_getaffinity(0)))
+    try:
+        nb_workers = int(1.5 * len(os.sched_getaffinity(0)))
+    except AttributeError as e:
+        nb_workers = 10
     print('Working with {} processes.'.format(nb_workers))
     pool = multiprocessing.Pool(nb_workers)
 
