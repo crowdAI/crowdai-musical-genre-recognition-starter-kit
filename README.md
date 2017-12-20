@@ -102,6 +102,8 @@ stored in `data/features.csv`. Script to be run as:
 python features.py
 ```
 Note that this script can take many hours to complete on the whole 60k tracks.
+For you to play with the data right away, you'll find those features
+pre-computed on the [challenge's dataset page][datasets].
 
 The [baseline_svm.py](baseline_svm.py) script trains a [support vector
 classifier (SVC)][svc] with `data/train_labels.csv` as target and
