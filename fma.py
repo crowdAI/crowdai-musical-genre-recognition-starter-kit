@@ -72,4 +72,18 @@ FILES_TEST_SILENT = [
     'a19eeeca-8941-4040-8b75-a03906b138c2',  # Low amplitude noise.
     'a29471b6-070e-4684-9ad8-b88ffa534438',  # Low amplitude noise.
 ]
-FILES_TEST_FAULTY = FILES_TEST_SILENT
+# MP3 test file IDs with less than 30 seconds of audio.
+# List from Hyun-gui Lim (cochlear.ai) on the discussion forum.
+FILES_TEST_SHORTER = [
+    '6d7fa4ee-5a22-465f-870f-523ee0ff68e9',  # duration:  9.74s
+    '6d088952-d86a-4d6e-bdab-18106668ebca',  # duration:  9.74s
+    '03109232-8e13-4491-b2f6-4f1bddaeacf0',  # duration: 14.39s
+    'a7db85a4-aa15-4ace-92b3-5747f8b13c1f',  # duration: 18.91s
+    'adea2feb-9149-4a4d-9827-264c479d4d5e',  # duration:  7.45s
+    'd2de2c1f-f728-4c7b-910d-0eb67d9598ad',  # duration: 17.45s
+    'd3ac70bb-ec3a-4801-ba2f-04cdda51dd68',  # duration: 17.45s
+    'd4f5cff1-b366-42e6-9625-e293c48f1292',  # duration: 13.27s
+    'f19f7a99-e8c1-433a-814f-4d2c844ac954',  # duration: 26.23s
+    'f2065669-a926-462b-8944-ba980aaf46f7',  # duration: 26.23s
+]
+FILES_TEST_FAULTY = FILES_TEST_SILENT + FILES_TEST_SHORTER
