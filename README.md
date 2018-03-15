@@ -2,6 +2,7 @@
 # crowdai-musical-genre-recognition-starter-kit
 
 Starter kit for the [WWW2018] challenge "[Learning to Recognize Musical Genre][challenge]" hosted on CrowdAI.
+The following [overview paper][challenge_paper] summarizes our experience running a challenge with open data for musical genre recognition. Those notes motivate the task and the challenge design, show some statistics about the submissions, and present the results.
 
 [www2018]: https://www2018.thewebconf.org/program/challenges-track/
 [challenge]: https://www.crowdai.org/challenges/www-2018-challenge-learning-to-recognize-musical-genre
@@ -16,6 +17,7 @@ code. The associated [paper][fma_paper] describes the data.
 
 [fma_repo]: https://github.com/mdeff/fma
 [fma_paper]: https://arxiv.org/abs/1612.01840
+[challenge_paper]: https://arxiv.org/abs/1803.05337
 
 ## Installation
 
@@ -121,10 +123,17 @@ python submit.py --api_key=<YOUR CROWDAI API KEY> data/submission.csv
 [librosa]: https://github.com/librosa/librosa
 [svc]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 
-## Authors
+## License & co
 
-* S.P. Mohanty, <sharada.mohanty@epfl.ch>
-* Michaël Defferrard, <michael.defferrard@epfl.ch>
+The code in this repository is released under the terms of the [MIT license](LICENSE.txt).
+Please cite our [paper][challenge_paper] if you use it.
 
-The code in this repository is released under the terms of the
-[MIT license](LICENSE.txt).
+```
+@inproceedings{fma_crowdai_challenge,
+  title = {Learning to Recognize Musical Genre from Audio},
+  author = {Defferrard, Micha\"el and Mohanty, Sharada P. and Carroll, Sean F. and Salath\'e, Marcel},
+  booktitle = {WWW '18 Companion: The 2018 Web Conference Companion},
+  year = {2018},
+  url = {https://arxiv.org/abs/1803.05337},
+}
+```
