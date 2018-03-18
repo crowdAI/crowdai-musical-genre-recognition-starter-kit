@@ -104,7 +104,7 @@ To be more specific, here is what the previous two steps do, along with some mor
 
 ### Building a docker image
 In this step, we use [repo2docker](https://github.com/jupyter/repo2docker) to convert your source code to a docker image.
-`repo2docker` uses the `environment.yml` file in your repository, to build a fresh conda environment and make it available as a docker image.
+`repo2docker` uses the `environment.yml` file in your repository, to build a fresh conda environment and make it available as a docker image. We also name this image as `my_submission_image`.
 
 ### Execution of Docker Image
 Then we use the docker image created in the previous step to create a new container named `my_submission_container` (which can be replaced by any arbitrary string), and execute it by passing the following parameters :
