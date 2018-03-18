@@ -123,5 +123,12 @@ Then we use the docker image created in the previous step to create a new contai
 * `/home/crowdai/run.sh` : This is the final argument which passes the location of the script to run inside the docker container. Our grading orchestration system expects the entry-point for your code to be at this location, so you have to ensure that the script is available at the said location. All the contents of your repository will be available inside the `/home/crowdai/` directory inside your docker container. So in principle you just have to ensure that `run.sh` exists in the root of your source code repository.
 
 
+# Submission Guidelines
+
+This section will soon be updated with more details. 
+
+Each participant will be provided access to a custom [gitlab](https://en.wikipedia.org/wiki/GitLab), where they can create private repositories for each of their submissions.
+The filesize limit for each file in the repostiory will be `10GB`, so you can include your model weights (upto 10GB), inside your git repository.
+
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>
