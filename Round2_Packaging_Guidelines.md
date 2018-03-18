@@ -8,7 +8,7 @@ This is a documentation of the packaging guidelines for your source code for Rou
 * [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 * [jupyter-repo2docker](https://github.com/jupyter/repo2docker)
 
-For instance, on `Ubuntu 16.04`, you can first install `Anaconda 5` by following
+You can first install `Anaconda 5` by following
 the instructions [here](https://www.anaconda.com/download/).
 Then install `docker-ce` by following the instructions
 [here](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce).
