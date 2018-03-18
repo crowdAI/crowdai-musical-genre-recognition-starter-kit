@@ -11,8 +11,8 @@ Parse arguments
 """
 assert len(sys.argv) >= 3
 
-TEST_DIRECTORY=sys.argv[1]
-OUTPUT_PATH=sys.argv[2]
+TEST_DIRECTORY=sys.argv[1] # First cli argument
+OUTPUT_PATH=sys.argv[2] # Second cli argument
 
 """
 Helper Functions
