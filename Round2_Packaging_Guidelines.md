@@ -19,7 +19,7 @@ pip install jupyter-repo2docker
 
 # Setup & Usage
 
-```
+```bash
 git clone https://github.com/crowdAI/crowdai-musical-genre-recognition-starter-kit
 cd crowdai-musical-genre-recognition-starter-kit
 conda create python=3.6 --name www_music_py36
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 # Running the code locally
 Assuming that your test files are present at `data/crowdai_fma_test/*.mp3`.
 You should be able to locally run the code for random predictions by running
-```
+```bash
 export TEST_DIRECTORY=data/crowdai_fma_test
 export OUTPUT_PATH=/tmp/output.csv
 ./run.sh
@@ -41,7 +41,7 @@ The script will be provided the location of the directory containing mp3 files b
 Internally, the `./run.sh` script calls `round2_submission_template.py` script, and you can take a closer look to get a sense of the arguments it expects.
 You should ideally modify the `round2_submission_template.py` file to include your own model.
 You can install any dependencies you need by doing :
-```
+```bash
 conda install <package name>
 ```
 Most common dependencies should be available on [anaconda cloud default channel](https://anaconda.org/anaconda/repo), or on [conda-forge](https://conda-forge.org/).
@@ -54,7 +54,7 @@ Once you have successfully done this step, and `./run.sh` executes successfully 
 Before building an image, please ensure that you can successfully run your code locally in your conda-environment as described in the previous section.
 
 Then you will need to generate an `environment.yml` for your conda environment by running :
-```
+```bash
 conda env export > environment.yml
 ```
 **Note** : The `environment.yml` captures all the details required to replicate your conda environment, so it is very important that you do this step and register all the dependencies required for your code.
@@ -62,7 +62,7 @@ conda env export > environment.yml
 Then you can locally **build** an image out of the repository by running :
 **Note** In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.
 
-```
+```bash
 repo2docker --no-run \
   --user-id 1001 \
   --user-name crowdai \
@@ -81,7 +81,7 @@ Successfully tagged my_submission_image:latest
 
 Then you can locally test your code by running :
 
-```
+```bash
 docker run \
   -v `pwd`/data/crowdai_fma_test:/crowdai-payload \
   -e TEST_DIRECTORY='/crowdai-payload' \
