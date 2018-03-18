@@ -60,6 +60,13 @@ conda env export > environment.yml
 **Note** : The `environment.yml` captures all the details required to replicate your conda environment, so it is very important that you do this step and register all the dependencies required for your code.
 
 Then you can locally **build** an image out of the repository by running :
+**Note** : If you have all your data inside the `data/` folder, then this step can lead to an unreasonably large docker image. This is because of a bug, and we currently have [a pull request open with a bug fix](https://github.com/jupyter/repo2docker/pull/269). So, you can either ensure that you you do not have all your training/testing data inside the `data/` folder (temporarily move it), or you can use a custom fork of `repo2docker` which has the bugfix included, by running :
+```
+pip uninstall jupyter-repo2docker
+pip install https://github.com/crowdai/repo2docker/archive/issue268.zip
+```
+which is a custom fork of `jupyter-repo2docker` with the bug fix included.
+
 **Note** In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.
 
 ```bash
@@ -125,9 +132,9 @@ Then we use the docker image created in the previous step to create a new contai
 
 # Submission Guidelines
 
-This section will soon be updated with more details. 
-
-Each participant will be provided access to a custom [gitlab](https://en.wikipedia.org/wiki/GitLab), where they can create private repositories for each of their submissions.
+This section will soon be updated with more details.
+Once your code repository is Binder compatible.
+Each participant will be provided access to a custom [gitlab](https://en.wikipedia.org/wiki/GitLab), where you can create private repositories for each of your submissions.
 The filesize limit for each file in the repostiory will be `10GB`, so you can include your model weights (upto 10GB), inside your git repository.
 
 # Author
