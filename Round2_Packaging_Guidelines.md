@@ -53,21 +53,22 @@ Once you have successfully done this step, and `./run.sh` executes successfully 
 ## Building a docker image
 Before building an image, please ensure that you can successfully run your code locally in your conda-environment as described in the previous section.
 
-Then you will need to generate an `environment.yml` for your conda environment by running :
+Then you will need to generate an `environment.yml` for your conda environment by running :   
 ```bash
 conda env export > environment.yml
-```
-**Note** : The `environment.yml` captures all the details required to replicate your conda environment, so it is very important that you do this step and register all the dependencies required for your code.
+```   
+**Note** : The `environment.yml` captures all the details required to replicate your conda environment, so it is very important that you do this step and register all the dependencies required for your code.   
+   
+Then you can locally **build** an image out of the repository by running :   
 
-Then you can locally **build** an image out of the repository by running :
 **Note** : If you have all your data inside the `data/` folder, then this step can lead to an unreasonably large docker image. This is because of a bug, and we currently have [a pull request open with a bug fix](https://github.com/jupyter/repo2docker/pull/269). So, you can either ensure that you you do not have all your training/testing data inside the `data/` folder (temporarily move it), or you can use a custom fork of `repo2docker` which has the bugfix included, by running :
 ```
 pip uninstall jupyter-repo2docker
 pip install https://github.com/crowdai/repo2docker/archive/issue268.zip
 ```
-which is a custom fork of `jupyter-repo2docker` with the bug fix included.
-
-**Note** In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.
+which is a custom fork of `jupyter-repo2docker` with the bug fix included.   
+   
+**Note** In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.   
 
 ```bash
 repo2docker --no-run \
@@ -76,8 +77,9 @@ repo2docker --no-run \
   --image-name my_submission_image \
   --debug .
 ```
-**Note** : If the `image-name` already exists, then you can change it to some other unique string, for example `my_submission_image008`. But in this case, please remember to use the exact same string in the rest of the section when referencing the `image_name`.
-**Note** : This step can take some time to execute, especially if it is the first time you are trying to build the image. Please be patient :wink:
+**Note** : If the `image-name` already exists, then you can change it to some other unique string, for example `my_submission_image008`. But in this case, please remember to use the exact same string in the rest of the section when referencing the `image_name`.    
+   
+**Note** : This step can take some time to execute, especially if it is the first time you are trying to build the image. Please be patient :wink:   
 
 ## Execution of Docker Image
 
