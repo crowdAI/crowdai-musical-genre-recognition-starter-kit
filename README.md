@@ -123,13 +123,35 @@ python submit.py --api_key=<YOUR CROWDAI API KEY> data/submission.csv
 [librosa]: https://github.com/librosa/librosa
 [svc]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 
-# Round 2 Packaging and Submission Guidelines
-* [Round2_packaging_guidelines.md](Round2_packaging_guidelines.md)
-* [Round2_submission_guidelines.md](Round2_submission_guidelines.md)
+## Second round
+
+The second round requires all participants to submit their code.
+It will be used by our grading orchestrator to predict the genres for all the files in a secret test set.
+The systems have to be submitted as [binder](https://mybinder.readthedocs.io/) compatible repositories. You'll find all the details to package and submit your code in the following documents:
+
+1. [Packaging guidelines](Round2_packaging_guidelines.md)
+1. [Submission guidelines](Round2_submission_guidelines.md)
+
+Predictions will be made on an arbitrary number of mp3 files of at most 30 seconds each.
+During the execution of the container, all the mp3 files will be mounted at `/crowdai-payload`.
+Execution of your container will be initiated by executing `/home/run.sh`.
+During the runtime, the container will not have access to the external Internet, and will have access to:
+
+* 1 Nvidia GTX GeForce 1080 Ti (11 GB GDDR5X),
+* 5 cores of an Intel Xeon E5-2650 v4 (2.20-2.90 GHz),
+* 60 GB of RAM,
+* 100 GB of disk,
+* and a timeout of 10 hours.
+
+At the end of the process, your model will simply be an "executable" git
+repository. Please provide an open-source license and a README with an
+executive summary of how your system works. At the end of the challenge, we'll
+make all these repositories public. The public list of repositories will allow
+anybody to easily reproduce and reuse any of your systems!
 
 ## License & co
 
-The code in this repository is released under the terms of the [MIT license](LICENSE.txt).
+The content of this repository is released under the terms of the [MIT license](LICENSE.txt).
 Please cite our [paper][challenge_paper] if you use it.
 
 ```

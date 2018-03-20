@@ -1,68 +1,99 @@
-# Packaging Guidelines for Round-2
+# Round 2: packaging guidelines
 
-This is a documentation of the packaging guidelines for your source code for Round-2.
+This document explains how to **prepare** your code repository for participation in the second round of the challenge. The main goal here is to make sure that your repository can be turned into a docker container by `repo2docker` and executes successfully. Once done, proceed with the [submission guidelines](Round2_submission_guidelines.md).
 
-# Pre-requisites
+It involves the following steps:
+1. [Entry point](#entry-point)
+1. [Declaring dependencies](#declaring-dependencies)
+1. [Building a docker image with `repo2docker`](#building-a-docker-image)
+1. [Executing the docker image](#executing-the-docker-image)
 
-* [Anaconda 5](https://www.anaconda.com/download/)
-* [docker-ce](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-* [jupyter-repo2docker](https://github.com/jupyter/repo2docker)
+The first two steps ensure that your code can be run by invoking a script in a defined conda environment. The last two steps then build and run a container based on the declared environment.
 
-You can first install `Anaconda 5` by following
-the instructions [here](https://www.anaconda.com/download/).
-Then install `docker-ce` by following the instructions
-[here](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce).
-Then you can install `jupyter-repo2docker` by :
+## Prerequisites
+
+* [Anaconda 5](https://www.anaconda.com)
+* [Docker CE](https://www.docker.com/community-edition)
+
+You can first install Anaconda 5 by following the instructions [here](https://www.anaconda.com/download/) then install Docker CE by following the instructions [there](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce).
+
+The following commands shall be available after successful installations: `conda` and `docker`.
+
+## Setup
+
+Create and activate a fresh conda environment:
+```bash
+conda create python=3.6 --name www_music_py36
+source activate www_music_py36
+```
+
+Install [jupyter-repo2docker](https://github.com/jupyter/repo2docker) with:
 ```
 pip install jupyter-repo2docker
 ```
 
-# Setup & Usage
+The below commands can be used to follow the guide with this starter-kit repository. You should otherwise work on your own code repository.
 
 ```bash
 git clone https://github.com/crowdAI/crowdai-musical-genre-recognition-starter-kit
 cd crowdai-musical-genre-recognition-starter-kit
-conda create python=3.6 --name www_music_py36
-source activate www_music_py36
-pip install jupyter-repo2docker
 pip install -r requirements.txt
 ```
 
-# Running the code locally
-Assuming that your test files are present at `data/crowdai_fma_test/*.mp3`.
-You should be able to locally run the code for random predictions by running
+## Entry point
+
+The goal is to make sure that your code can be invoked by the `run.sh` script and looks for the mp3s in a given directory and write its predictions in a given file. The `run.sh` entry point must be placed in the root of the repository.
+
+Assuming that your test files are present at `data/crowdai_fma_test/*.mp3`, you should be able to run the code with:
 ```bash
 export TEST_DIRECTORY=data/crowdai_fma_test
 export OUTPUT_PATH=/tmp/output.csv
 ./run.sh
 ```
-The script will be provided the location of the directory containing mp3 files by the `TEST_DIRECTORY` environment variable, and it has to write the output CSV to the location specified in the `OUTPUT_PATH` environment variable.
 
-Internally, the `./run.sh` script calls `round2_submission_template.py` script, and you can take a closer look to get a sense of the arguments it expects.
-You should ideally modify the `round2_submission_template.py` file to include your own model.
-You can install any dependencies you need by doing :
+The script is provided the location of the directory containing mp3 files by the `TEST_DIRECTORY` environment variable, and it has to write the output CSV to the location specified by the `OUTPUT_PATH` environment variable.
+
+You should modify the [run.sh](run.sh) script to do whatever is needed to run your model. In our example it calls the [random_submission.py](random_submission.py) script with appropriate parameters. Take a look at those files to get a sense of the arguments they expect.
+
+If it worked, predictions should be available at `/tmp/output.csv`.
+You can check its presence and content by doing:
+```bash
+cat $OUTPUT_PATH
+```
+
+## Declaring dependencies
+
+The goal is to make sure that all the dependencies (Python or otherwise) needed to run your code are declared in an `environment.yml` file. That file captures all the details (packages, versions, channels) required to deterministically replicate your environment. It is very important to do this step and register all the required dependencies. If dependencies are missing, the container will fail to run.
+
+You can install dependencies with `conda` as:
 ```bash
 conda install <package name>
+conda install -c conda-forge <package name>
 ```
-Most common dependencies should be available on [anaconda cloud default channel](https://anaconda.org/anaconda/repo), or on [conda-forge](https://conda-forge.org/).
-Instead of thinking about anything related to docker or packaging, you should simply focus on trying to setup your own conda environment where your code executes successfully.
-Once you have successfully done this step, and `./run.sh` executes successfully (when passed over the relevant environment variables), then you can move on the next section for the actual packaging of your code.
+Most dependencies should be available on the [anaconda default channel](https://anaconda.org/anaconda/repo) or on [conda-forge](https://conda-forge.org/). You can read up more about managing packages with conda [here](https://conda.io/docs/user-guide/tasks/manage-pkgs.html).
 
-# Packaging
+You can also install dependencies with `pip` (they will be caught by `conda`):
+```bash
+pip install <package name>
+pip install -r requirements.txt
+```
 
-## Building a docker image
-Before building an image, please ensure that you can successfully run your code locally in your conda-environment as described in the previous section.
-
-Then you will need to generate an `environment.yml` for your conda environment by running :   
+Once all dependencies are installed in the conda environment, generate the `environment.yml` by running:
 ```bash
 conda env export > environment.yml
-```   
-**Note** : The `environment.yml` captures all the details required to replicate your conda environment, so it is very important that you do this step and register all the dependencies required for your code.   
+```
 
-**Note** In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.   
+**Note**: while you are free to use all the options provided by [binder](http://mybinder.readthedocs.io/), we recommend the [conda environment approach](http://mybinder.readthedocs.io/en/latest/sample_repos.html#conda-environment-with-environment-yml) which should be equally easy for beginners and flexible for advanced users.
 
-Then you can locally **build** an image out of the repository by running :   
+## Building a docker image
 
+Before building an image, please ensure that you can successfully run your code with `./run.sh` (after the environment variables have been exported) in the conda environment defined by the `environment.yml` file.
+
+In this step, we use [repo2docker](https://github.com/jupyter/repo2docker) to convert your source code to a docker image.`repo2docker` uses the `environment.yml` file in your repository to build a fresh conda environment and make it available as a docker image, named `my_submission_image`.
+
+**Note**: In the rest of the section, the strings `my_submission_image` and `my_submission_container` can be replaced by arbitrary strings, as long as your are consistent.
+
+You can locally build an image out of the repository by running:
 ```bash
 repo2docker --no-run \
   --user-id 1001 \
@@ -70,26 +101,26 @@ repo2docker --no-run \
   --image-name my_submission_image \
   --debug .
 ```
-**Note** : If you have all your data inside the `data/` folder, then this step can lead to an unreasonably large docker image. This is because of a bug, and we currently have [a pull request open with a bug fix](https://github.com/jupyter/repo2docker/pull/269). So, you can either ensure that you you do not have all your training/testing data inside the `data/` folder (temporarily move it), or you can use a custom fork of `repo2docker` which has the bugfix included, by running :
+
+**Note**: If you have all your data inside the `data/` folder, then this step can lead to an unreasonably large docker image. This is because of a bug, and we currently have [a pull request open with a bug fix](https://github.com/jupyter/repo2docker/pull/269). So, you can either ensure that you do not have all your training/testing data inside the `data/` folder (temporarily move it), or you can use a custom fork of `repo2docker` which has the bugfix included, by running:
 ```
 pip uninstall jupyter-repo2docker
 pip install https://github.com/crowdai/repo2docker/archive/issue268.zip
 ```
-which is a custom fork of `jupyter-repo2docker` with the bug fix included. But if you use the official version of `repo2docker` and have a **lot** of `data/` inside the data folder, then everything will still work, it will just be very slow, and size of the generated docker images will be **huge**.
+which is a custom fork of `jupyter-repo2docker` with the bug fix included. But if you use the official version of `repo2docker` and have a lot of data inside the `data/` folder, then everything will still work, it will just be very slow, and size of the generated docker images will be huge.
 
-**Note** : If the `image-name` already exists, then you can change it to some other unique string, for example `my_submission_image008`. But in this case, please remember to use the exact same string in the rest of the section when referencing the `image_name`.    
+**Note**: If `repo2docker` returns `Docker client initialization error. Check if docker is running on the host.`, you either need to start the docker daemon (e.g. with `sudo systemctl start docker`) or to run the command as `sudo repo2docker ...` (see [those instructions](https://docs.docker.com/install/linux/linux-postinstall/) if you want to manage Docker as a non-root user).
 
-**Note** : This step can take some time to execute, especially if it is the first time you are trying to build the image. Please be patient :wink:   
+**Note**: If the `image-name` already exists, you can either change it to some other unique string or delete the old image with `docker rmi my_submission_image`. You can get a list of all images with `docker images`.
 
-## Execution of Docker Image
+**Note**: This step can take some time to execute, especially if it is the first time you are trying to build the image. Please be patient. :wink:
 
-on successful execution of the previous step, you should ideally see the logs ending with something along the lines of :
-```
-Successfully tagged my_submission_image:latest
-```
+## Executing the docker image
 
-Then you can locally test your code by running :
+On a successful execution of the build step, the logs should end with `Successfully tagged my_submission_image:latest`.
+We will now use the docker image to create a new container named `my_submission_container` and execute it.
 
+You can locally test your code by running:
 ```bash
 docker run \
   -v `pwd`/data/crowdai_fma_test:/crowdai-payload \
@@ -100,56 +131,39 @@ docker run \
   /home/crowdai/run.sh
 ```
 
-If this executes successfully, and you see :
-```
-Output file written at :  /tmp/output.csv
-```
-Then that means your repository is now [Binder](https://mybinder.org/) compatible,
-and can be successfully graded by our grading infrastructure.
+You can again verify that it worked by checking the content of `/tmp/output.csv`.
+If it executes successfully and you see `Output file written at /tmp/output.csv` (or whatever your own code logs), then your repository is [binder](https://mybinder.org/) compatible, which means it will be accepted by our grading infrastructure.
 
-To be more specific, here is what the previous two steps do, along with some more step specific details about the individual steps :
+**Note**: If you get a `container exists` error, you can either change the name of the container from `my_submission_container` to something else, either delete the old container with `docker rm my_submission_container`. You can get a list of all containers with `docker ps -a`.
 
-## Step specific details
+Below is a description of the parameters we used:
 
-### Building a docker image
-In this step, we use [repo2docker](https://github.com/jupyter/repo2docker) to convert your source code to a docker image.
-`repo2docker` uses the `environment.yml` file in your repository, to build a fresh conda environment and make it available as a docker image. We also name this image as `my_submission_image`.
-
-### Execution of Docker Image
-Then we use the docker image created in the previous step to create a new container named `my_submission_container` (which can be replaced by any arbitrary string), and execute it by passing the following parameters :
-
-* ```-v `pwd`/data/crowdai_fma_test:/crowdai-payload ``` : This argument tells docker to map the folder `data/crowdai_fma_test` on your host container, to the location `/crowdai-payload` inside your docker container. This ensures that all the files inside the directory `data/crowdai_fma_test` (on your host container) are now available inside the directory `/crowdai-payload` on your docker container.
+* ```-v `pwd`/data/crowdai_fma_test:/crowdai-payload```: tells docker to map the folder `data/crowdai_fma_test` on your host to the location `/crowdai-payload` inside the container. All the files inside the directory `data/crowdai_fma_test` will be visible at `/crowdai-payload` in the container.
   You might also notice that in the command we also prepend the path on the host container by ``` `pwd`/ ```, that is because this argument in `docker-run`, only allows absolute paths when the path has a `/` in its name. This is a usage specific detail, and you might have to use `%cd%` instead of `pwd` on windows, but you just have to ensure that the overall path provided is of the form `<absolute_path_on_host>:/crowdai-payload`.
 
-* ``` -e TEST_DIRECTORY='/crowdai-payload' ``` : This argument sets the environment variable `TEST_DIRECTORY` to `/crowdai-payload` inside the docker container, this is because the script `run.sh` expects the location of the test directory passed via this environment variable.
+* `-e TEST_DIRECTORY='/crowdai-payload'`: sets the environment variable `TEST_DIRECTORY` to `/crowdai-payload` inside the container. The `run.sh` script expects the location of the test directory to be passed via this environment variable.
 
-* ``` -e OUTPUT_PATH='/tmp/output.csv' ``` : This argument sets the environment variable `OUTPUT_PATH` to `/tmp/output.csv` inside the docker container, this is because the script `run.sh` expects the location of the output path passed via this environment variable.
+* `-e OUTPUT_PATH='/tmp/output.csv'`: sets the environment variable `OUTPUT_PATH` to `/tmp/output.csv` inside the container. The `run.sh` script expects the location of the output path to be passed via this environment variable.
 
-* ` --name my_submission_container ` : This argument names the container as `my_submission_container`. You are free to choose any arbitrary string for the same.
+* `--name my_submission_container`: name the container as `my_submission_container`. You are free to choose any arbitrary string.
 
-* `-it my_submission_image` : This passes the name of the submission image and asks docker to run the script referenced in the next step in an interactive mode, and attach a pseudo TTY to the execution.
+* `-it my_submission_image`: specify the image and tells docker to run the script referenced in the next argument in an interactive mode, and attach a pseudo TTY to the execution.
 
-* `/home/crowdai/run.sh` : This is the final argument which passes the location of the script to run inside the docker container. Our grading orchestration system expects the entry-point for your code to be at this location, so you have to ensure that the script is available at the said location. All the contents of your repository will be available inside the `/home/crowdai/` directory inside your docker container. So in principle you just have to ensure that `run.sh` exists in the root of your source code repository.
+* `/home/crowdai/run.sh`: sets the location of the script to run inside the docker container. Our grading orchestration system expects the entry-point for your code to be at this location, so you have to ensure that the script is available at the said location. All the content of your repository will be available in the `/home/crowdai/` directory inside the container. So in principle you just have to ensure that `run.sh` exists in the root of your source code repository.
 
-# Submission Guidelines
-If you are having trouble figuring out a debugging workflow when packaging your code, and you are curious about how **exactly** to submit your code, please refer to [this document].
+## Help needed :angel:
 
-# Help Needed :angel:
-If you find any of these sections confusing, or notice typos, or have a nice trick, or simply an question or an answer to a FAQ, please definitely do send us a pull request with your suggestion.
+If you find any of these sections confusing, or notice typos, or have a nice trick, or simply a question or an answer to a FAQ, please do send us a pull request with your suggestion.
 
-# FAQ(s) ?
-* **But my code requires a GPU, how do I deal with that ?**
-  During the orchestration of the containers, we will use [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), which is a drop-in replacement for `docker` and exposes GPUs from the host machine to the containers. If you want to test it out yourself, please follow the instructions here : [https://github.com/NVIDIA/nvidia-docker](https://github.com/NVIDIA/nvidia-docker) to install it, and then you should be able to use `nvidia-docker` instead of `docker` in all the steps above.   
-  From the point of view of your code, you can assume that you will have access to at least 1 GPU. You can confirm that by checking the `$CUDA_VISIBLE_DEVICES` environment variable. If this environment variable is not set, then you are running on a server without a GPU. 
+## FAQ
 
-* Contributed Question 1 ?
-   Contributed Answer1
-* Contributed Question 2 ?
-  Contributed Answer2
-....
-....
-....
-__Please send a pull request if you think you have Frequently Asked Question, or the answer to one__
+* **My code requires a GPU, how do I deal with that?**
+  During the orchestration of the containers, we will use [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), which is a drop-in replacement for `docker` and exposes GPUs from the host machine to the containers. If you want to test it out yourself, please follow the [installation instructions](https://github.com/NVIDIA/nvidia-docker). You should then be able to use `nvidia-docker` instead of `docker` in all the steps above.
+  For your code, you can assume that you will have access to at least 1 GPU. You can confirm that by checking the `$CUDA_VISIBLE_DEVICES` environment variable. If this environment variable is not set, then you are running on a server without a GPU. 
 
-# Author
-S.P. Mohanty <sharada.mohanty@epfl.ch>
+**Please send a pull request if you think you have a Frequently Asked Question, or the answer to one.**
+
+## Authors
+
+* S.P. Mohanty <sharada.mohanty@epfl.ch>
+* Michaël Defferrard <michael.defferrard@epfl.ch>
