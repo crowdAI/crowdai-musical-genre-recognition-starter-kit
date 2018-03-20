@@ -190,6 +190,10 @@ For any questions, etc, you can always reach us at [our gitter channel](https://
 If you find any of these sections confusing, or notice typos, or have a nice trick, or simply an question or an answer to a FAQ, please definitely do send us a pull request with your suggestion.
 
 # FAQ(s) ?
+* **But my code requires a GPU, how do I deal with that ?**
+  During the orchestration of the containers, we will use [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), which is a drop-in replacement for `docker` and exposes GPUs from the host machine to the containers. If you want to test it out yourself, please follow the instructions here : [https://github.com/NVIDIA/nvidia-docker](https://github.com/NVIDIA/nvidia-docker) to install it, and then you should be able to use `nvidia-docker` instead of `docker` in all the steps above.   
+  From the point of view of your code, you can assume that you will have access to at least 1 GPU. You can confirm that by checking the `$CUDA_VISIBLE_DEVICES` environment variable. If this environment variable is not set, then you are running on a server without a GPU.
+
 * Contributed Question 1 ?
    Contributed Answer1
 * Contributed Question 2 ?
