@@ -123,6 +123,10 @@ python submit.py --api_key=<YOUR CROWDAI API KEY> data/submission.csv
 [librosa]: https://github.com/librosa/librosa
 [svc]: http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 
+# Round 2 Packaging and Submission Guidelines
+* [Round2_packaging_guidelines.md](Round2_packaging_guidelines.md)
+* [Round2_submission_guidelines.md](Round2_submission_guidelines.md)
+
 ## License & co
 
 The code in this repository is released under the terms of the [MIT license](LICENSE.txt).
