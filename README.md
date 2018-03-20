@@ -94,7 +94,7 @@ print(response['message'])
 The [random_submission.py](random_submission.py) script submits random
 predictions, to be run as:
 ```sh
-python random_submission.py --api_key=<YOUR CROWDAI API KEY>
+python random_submission.py --round=1 --api_key=<YOUR CROWDAI API KEY>
 ```
 
 The [features.py](features.py) script extracts many audio features (with the
