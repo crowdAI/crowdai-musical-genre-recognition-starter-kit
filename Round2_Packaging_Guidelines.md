@@ -133,11 +133,7 @@ Then we use the docker image created in the previous step to create a new contai
 
 
 # Submission Guidelines
-
-This section will soon be updated with more details.
-Once your code repository is Binder compatible.
-Each participant will be provided access to a custom [gitlab](https://en.wikipedia.org/wiki/GitLab), where you can create private repositories for each of your submissions.
-The filesize limit for each file in the repostiory will be `10GB`, so you can include your model weights (upto 10GB), inside your git repository.
+If you are having trouble figuring out a debugging workflow when packaging your code, and you are curious about how **exactly** to submit your code, please refer to [this document].
 
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>
