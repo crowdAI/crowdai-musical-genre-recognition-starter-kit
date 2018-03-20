@@ -182,5 +182,15 @@ For any questions, etc, you can always reach us at [our gitter channel](https://
 # Help Needed :angel:
 If you find any of these sections confusing, or notice typos, or have a nice trick, or simply an question or an answer to a FAQ, please definitely do send us a pull request with your suggestion.
 
+# FAQ(s) ?
+* Contributed Question 1 ?
+   Contributed Answer1
+* Contributed Question 2 ?
+  Contributed Answer2
+....
+....
+....
+__Please send a pull request if you think you have Frequently Asked Question, or the answer to one__
+
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>
