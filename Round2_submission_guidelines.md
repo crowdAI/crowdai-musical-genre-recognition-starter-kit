@@ -164,10 +164,11 @@ git push origin v0.1
 
 At the end of Round 2, all tags in your repository will be collected, and sorted based on the time they were created. The code versions with the 10 latest tags will finally be orchestrated by the grading infrastructure and the corresponding scores updated.
 
-## Good Practices 
+## Good Practices
 * Please include a `LICENSE.md` in your repository
 * Please remember to create your repository as a **Private Repository** (especially if you do not want others sneaking at your solution)
 At the end of the challenge, all the repositories will be made public. If you do not wish for your submitted code to be public, please send us an email at [info@crowdai.org](mailto:info@crowdai.org).
+* Prefil your crowdai username in the `crowdai.json` file. Also add a meaningful description when adding/pushing a tag.
 
 
 ## Bonus
