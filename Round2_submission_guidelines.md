@@ -168,7 +168,7 @@ At the end of Round 2, all tags in your repository will be collected, and sorted
 ### git-lfs : Are you `git` commands running very very very slow ?
 `git` repositories were designed to version software, but in many cases we ended up running into the need to version large binary files in the repository.
 For example, in your case, you will definitely want to check in your trained model weights into your repository, so that your predicted model can do a great job.
-But large binary files are a bit messy to work with for `git`, which was built mostly for raw text files; and hence you might start noticing that your commits are taking longer than usual, and what not. Irritating -_- !
+But large binary files are a bit messy to work with for `git`, which was built mostly for raw text files; and hence you might start noticing that your commits are taking longer than usual, and what not. Irritating :sad: !
 
 Thats when the amazing [git-lfs](https://git-lfs.github.com/), comes to your rescue.
 [gitlab.crowdai.org](https://gitlab.crowdai.org) supports `git-lfs`, so if you can do a little bit of configuration [as described here](https://git-lfs.github.com), your workflow will back to being fast, smooth and efficient.
@@ -178,6 +178,9 @@ If you still didnt get a hang of how to package your code, please also read this
 
 Thank you so much for being so patient.
 For any questions, etc, you can always reach us at [our gitter channel](https://gitter.im/crowdAI/WWW-Music-Genre-Recognition-Challenge).
+
+# Help Needed :angel:
+If you find any of these sections confusing, or notice typos, or have a nice trick, or simply an question or an answer to a FAQ, please definitely do send us a pull request with your suggestion.
 
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>

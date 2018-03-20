@@ -131,9 +131,11 @@ Then we use the docker image created in the previous step to create a new contai
 
 * `/home/crowdai/run.sh` : This is the final argument which passes the location of the script to run inside the docker container. Our grading orchestration system expects the entry-point for your code to be at this location, so you have to ensure that the script is available at the said location. All the contents of your repository will be available inside the `/home/crowdai/` directory inside your docker container. So in principle you just have to ensure that `run.sh` exists in the root of your source code repository.
 
-
 # Submission Guidelines
 If you are having trouble figuring out a debugging workflow when packaging your code, and you are curious about how **exactly** to submit your code, please refer to [this document].
+
+# Help Needed :angel:
+If you find any of these sections confusing, or notice typos, or have a nice trick, or simply an question or an answer to a FAQ, please definitely do send us a pull request with your suggestion.
 
 # Author
 S.P. Mohanty <sharada.mohanty@epfl.ch>
