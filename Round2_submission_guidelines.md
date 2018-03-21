@@ -53,6 +53,12 @@ git push crowdai v0.1
 ```
 
 **Note**: tag names (`v0.1` in the above example) can be arbitrary strings, but its always good to follow an understandable pattern for your own sanity. ;)
+**Note** : If your are trying to put [https://gitlab.crowdai.org](https://gitlab.crowdai.org) over https, then you might get a `server certificate verification failed.` error. We are aware about this error, and are working on fixing this, but in the meantime either you can push over `git::` protocol, by instead using the `git@gitlab.crowdai.org:<your_user_name>/WWWMusicalGenreRecognitionChallenge.git` endpoint. Or you can simply run :
+```bash
+git config http.https://gitlab.crowdai.org.sslVerify
+```
+which disables `ssl.Verify` for [https://gitlab.crowdai.org](https://gitlab.crowdai.org).
+
 
 At the end of Round 2, all tags in your repository will be collected and sorted based on the time they were created. The code versions with the 10 latest tags will finally be orchestrated by the grading infrastructure and the corresponding scores updated.
 
