@@ -82,6 +82,7 @@ Once all dependencies are installed in the conda environment, generate the `envi
 ```bash
 conda env export > environment.yml
 ```
+**Note**: Please ensure that you are not using `pip` version `9.0.2`, as it introduced some breaking changes and hence is not available on conda. Relevant discussion around this can be found [here](https://github.com/ContinuumIO/anaconda-issues/issues/8967)
 
 **Note**: while you are free to use all the options provided by [binder](http://mybinder.readthedocs.io/), we recommend the [conda environment approach](http://mybinder.readthedocs.io/en/latest/sample_repos.html#conda-environment-with-environment-yml) which should be equally easy for beginners and flexible for advanced users.
 
@@ -159,7 +160,7 @@ If you find any of these sections confusing, or notice typos, or have a nice tri
 
 * **My code requires a GPU, how do I deal with that?**
   During the orchestration of the containers, we will use [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), which is a drop-in replacement for `docker` and exposes GPUs from the host machine to the containers. If you want to test it out yourself, please follow the [installation instructions](https://github.com/NVIDIA/nvidia-docker). You should then be able to use `nvidia-docker` instead of `docker` in all the steps above.
-  For your code, you can assume that you will have access to at least 1 GPU. You can confirm that by checking the `$CUDA_VISIBLE_DEVICES` environment variable. If this environment variable is not set, then you are running on a server without a GPU. 
+  For your code, you can assume that you will have access to at least 1 GPU. You can confirm that by checking the `$CUDA_VISIBLE_DEVICES` environment variable. If this environment variable is not set, then you are running on a server without a GPU.
 
 **Please send a pull request if you think you have a Frequently Asked Question, or the answer to one.**
 
