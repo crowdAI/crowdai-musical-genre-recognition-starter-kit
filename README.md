@@ -18,6 +18,68 @@ code. The associated [paper][fma_paper] describes the data.
 [fma_repo]: https://github.com/mdeff/fma
 [fma_paper]: https://arxiv.org/abs/1612.01840
 [challenge_paper]: https://arxiv.org/abs/1803.05337
+[challenge_slides]: https://doi.org/10.5281/zenodo.1243501
+
+## Results
+
+| Team              | Round 1 <br> leaderboard <br> 35k clips <br> log loss | Round 1 <br> subset <br> 3k clips <br> log loss | Round 2 <br> secret <br> 3k clips <br> log loss | Rank | Round 1 <br> leaderboard <br> 35k clips <br> F1 score | Round 1 <br> subset <br> 3k clips <br> F1 score | Round 2 <br> secret <br> 3k clips <br> F1 score |
+|-------------------|:----:|:----:|:--------:|:---:|:---:|:---:|:---:|
+| minzwon & jaehun  | 0.55 | 0.67 | **1.31** |  1  | 85% | 80% | 63% |
+| hglim             | 0.33 | 0.34 | **1.34** |  2  | 92% | 92% | 64% |
+| benjamin_murauer  | 0.82 | 0.86 | **1.44** |  3  | 74% | 74% | 60% |
+| gg12 & check      | 0.66 | 0.49 | **1.50** |  4  | 80% | 86% | 61% |
+| viper & algohunt  | 0.66 | 0.65 | **1.52** |  5  | 80% | 81% | 60% |
+| mimbres           | 0.41 | 0.43 | **2.08** |  6  | 90% | 90% | 60% |
+
+The three columns per metric references:
+1. the best scores obtained on the public leaderboard during the first round,
+1. the scores obtained by the submitted systems on a subset of the public test set,
+1. the scores obtained by the submitted systems on a private test set collected for the second round.
+
+Find more details in the [slides used to announce the
+results][challenge_slides] and in the [overview paper][challenge_paper].
+
+In the interest of reproducibility and transparency for interested
+researchers, you'll find below links to the source code repositories of all
+systems submitted by the participants for the second round of the challenge.
+Thanks to all the participants for making this happen!
+
+1. Transfer Learning of Artist Group Factors to Musical Genre Classification
+	* Jaehun Kim ([@jaehun]), TU Delft and Minz Won ([@minzwon]), Universitat Pompeu Fabra
+	* Code: <https://gitlab.crowdai.org/minzwon/WWWMusicalGenreRecognitionChallenge>
+	* Paper: <https://doi.org/10.1145/3184558.3191823>
+1. Ensemble of CNN-based Models using various Short-Term Input
+	* Hyungui Lim ([@hglim]), <http://cochlear.ai>
+	* Code: <https://gitlab.crowdai.org/hglim/WWWMusicalGenreRecognitionChallenge>
+1. Detecting Music Genre Using Extreme Gradient Boosting
+	* Benjamin Murauer ([@benjamin_murauer]), Universität Innsbruck
+	* Code: <https://gitlab.crowdai.org/Benjamin_Murauer/WWWMusicalGenreRecognitionChallenge>
+	* Paper: <https://doi.org/10.1145/3184558.3191822>
+1. ConvNet on STFT spectrograms
+	* Daniyar Chumbalov ([@check]), EPFL and Philipp Pushnyakov ([@gg12]), Moscow Institute of Physics and Technologies (MIPT)
+	* Code: <https://gitlab.crowdai.org/gg12/WWWMusicalGenreRecognitionChallenge>
+1. [Xception](https://arxiv.org/abs/1610.02357) on mel-scaled spectrograms
+	* [@viper] and [@algohunt]
+	* Code: <https://gitlab.crowdai.org/viper/WWWMusicalGenreRecognitionChallenge>
+1. Audio [Dual Path Networks](https://arxiv.org/abs/1707.01629) on mel-scaled spectrograms
+	* Sungkyun Chang ([@mimbres]), Seoul National University
+	* Code: <https://gitlab.crowdai.org/mimbres/WWWMusicalGenreRecognitionChallenge>
+
+[@jaehun]: https://www.crowdai.org/participants/jaehun
+[@minzwon]: https://www.crowdai.org/participants/minzwon
+[@hglim]: https://www.crowdai.org/participants/hglim
+[@benjamin_murauer]: https://www.crowdai.org/participants/benjamin_murauer
+[@viper]: https://www.crowdai.org/participants/viper
+[@algohunt]: https://www.crowdai.org/participants/algohunt
+[@mimbres]: https://www.crowdai.org/participants/mimbres
+[@check]: https://www.crowdai.org/participants/check
+[@gg12]: https://www.crowdai.org/participants/gg12
+
+The repositories should be self-contained and easily executable. You can
+execute any of the systems on your own mp3s by following those steps:
+1. Clone the git repository.
+1. [Build a docker image with `repo2docker`](Round2_packaging_guidelines.md#building-a-docker-image)
+1. [Execute the docker image](Round2_packaging_guidelines.md#executing-the-docker-image)
 
 ## Installation
 
