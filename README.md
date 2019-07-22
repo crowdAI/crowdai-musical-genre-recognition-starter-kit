@@ -60,7 +60,7 @@ Thanks to all the participants for making this happen!
 	* Code: <https://gitlab.crowdai.org/gg12/WWWMusicalGenreRecognitionChallenge>
 1. [Xception](https://arxiv.org/abs/1610.02357) on mel-scaled spectrograms
 	* [@viper] and [@algohunt]
-	* Code: <https://gitlab.crowdai.org/viper/WWWMusicalGenreRecognitionChallenge>
+	* Code: <https://gitlab.crowdai.org/viper/crowdai-viper>
 1. Audio [Dual Path Networks](https://arxiv.org/abs/1707.01629) on mel-scaled spectrograms
 	* Sungkyun Chang ([@mimbres]), Seoul National University
 	* Code: <https://gitlab.crowdai.org/mimbres/WWWMusicalGenreRecognitionChallenge>
