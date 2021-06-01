@@ -32,6 +32,6 @@ six==1.10.0
 socketIO-client-2==0.7.5
 termcolor==1.1.0
 tqdm==4.11.2
-urllib3==1.22
+urllib3==1.26.5
 websocket-client==0.40.0
 Werkzeug==0.12.2
